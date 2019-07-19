@@ -1,0 +1,2 @@
+# high-dimensional_gaussian_is_like_sphere
+高次元空間中の正規分布（ガウス分布）は超球面状になることを確かめるためのデモコード
