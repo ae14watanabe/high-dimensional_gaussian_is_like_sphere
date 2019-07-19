@@ -27,8 +27,13 @@ def make_figures(n_dimension=2, n_samples=100000, angle='random'):
     ax_hist_norm.hist(r,bins=50,range=(0,75))
     ax_hist_norm.set_title("histgram of norm")
 
+    p1 = r * np.cos(theta)
+    p2 = r * np.sin(theta)
+    p = np.concatenate([p1,p2])
     ax_polar = fig.add_subplot(122,aspect='equal')
-    ax_polar.scatter(r * np.cos(theta), r * np.sin(theta),alpha=0.3)
+    ax_polar.scatter(p1, p2 ,alpha=0.3)
+    ax_polar.set_xlim(p.min()*1.1,p.max()*1.1)
+    ax_polar.set_ylim(p.min()*1.1,p.max()*1.1)
     ax_polar.set_title("polar cordinate")
 
     plt.savefig('dimension{}.png'.format(n_dimension))
@@ -38,6 +43,7 @@ if __name__ == '__main__':
     np.random.seed(seed)
 
     list_n_dimension = [4,5,10,20,50,100,200,500,1000,2000,5000]
+    # list_n_dimension = [50]
     for n_dimension in list_n_dimension:
         make_figures(n_dimension=n_dimension)
 
